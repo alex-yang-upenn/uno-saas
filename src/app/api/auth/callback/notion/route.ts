@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
     const response = await axios("https://api.notion.com/v1/oauth/token", {
       method: "POST",
       headers: {"Content-type": "application/json", Authorization: `Basic ${encoded}`, "Notion-Version": "2022-06-28"},
-      data: JSON.stringify({grant_type: "authorization_code", code: code, redirect_uri: process.env.NOTION_REDIRECT_URI!})
+      data: JSON.stringify({grant_type: "authorization_code", code: code, redirect_uri: `${process.env.NEXT_PUBLIC_URL}${process.env.NOTION_REDIRECT_URI}`})
     })
     if (response) {
       const notion = new Client({auth: response.data.access_token})

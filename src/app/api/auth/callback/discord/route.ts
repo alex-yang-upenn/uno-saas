@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
     data.append("client_id", process.env.DISCORD_CLIENT_ID!)
     data.append("client_secret", process.env.DISCORD_CLIENT_SECRET!)
     data.append("grant_type", "authorization_code")
-    data.append("redirect_uri", process.env.DISCORD_REDIRECT_URI!)
+    data.append("redirect_uri", `${process.env.NEXT_PUBLIC_URL}${process.env.DISCORD_REDIRECT_PATH}`)
     data.append("code", code.toString())
 
     const output = await axios.post(

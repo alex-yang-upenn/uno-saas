@@ -1,4 +1,5 @@
-/*import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+/*
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 const isPublicRoute = createRouteMatcher(["/", "/api/clerk-webhook", "api/drive-activity/notification"])
 
@@ -11,7 +12,6 @@ export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };
 */
-
  
 import { authMiddleware } from '@clerk/nextjs/server'
 

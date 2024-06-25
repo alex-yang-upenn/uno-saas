@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       {
         method: 'POST',
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        body: new URLSearchParams({code, client_id: process.env.SLACK_CLIENT_ID!, client_secret: process.env.SLACK_CLIENT_SECRET!, redirect_uri: process.env.SLACK_REDIRECT_URI!})
+        body: new URLSearchParams({code, client_id: process.env.SLACK_CLIENT_ID!, client_secret: process.env.SLACK_CLIENT_SECRET!, redirect_uri: `${process.env.NEXT_PUBLIC_URL}${process.env.SLACK_REDIRECT_URI}`})
       }
     )
 
