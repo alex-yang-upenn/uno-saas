@@ -2,32 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+*::-webkit-scrollbar {
+  display: none !important;
+}
+.bg-radial-gradient {
+  background-image: radial-gradient(
+    circle at 10% 20%,
+    rgba(4, 159, 108, 1) 0%,
+    rgba(194, 254, 113, 1) 90.1%
+  );
+}
+
+/* #D91E52 */
+@layer base {
+  :root  { 
+    --background: 343 100% 95%;
+    --foreground: 343 5% 0%;
+    --card: 343 50% 90%;
+    --card-foreground: 343 5% 10%;
+    --popover: 343 100% 95%;
+    --popover-foreground: 343 100% 0%;
+    --primary: 343 75.7% 48.4%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 343 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 305 30% 85%;
+    --muted-foreground: 343 5% 35%;
+    --accent: 305 30% 80%;
+    --accent-foreground: 343 5% 10%;
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 343 5% 90%;
+    --border: 343 30% 50%;
+    --input: 343 30% 18%;
+    --ring: 343 75.7% 48.4%;
+    --radius: 1rem;
+  }
+  .dark  {
+    --background: 343 50% 5%;
+    --foreground: 343 5% 90%;
+    --card: 343 50% 0%;
+    --card-foreground: 343 5% 90%;
+    --popover: 343 50% 5%;
+    --popover-foreground: 343 5% 90%;
+    --primary: 343 75.7% 48.4%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 343 30% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 305 30% 15%;
+    --muted-foreground: 343 5% 60%;
+    --accent: 305 30% 15%;
+    --accent-foreground: 343 5% 90%;
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 343 5% 90%;
+    --border: 343 30% 18%;
+    --input: 343 30% 18%;
+    --ring: 343 75.7% 48.4%;
+    --radius: 1rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
