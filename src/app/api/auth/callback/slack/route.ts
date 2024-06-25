@@ -1,6 +1,9 @@
+import { getBaseUrl } from '@/lib/utils'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
+  const baseUrl = getBaseUrl()
+
   const code = req.nextUrl.searchParams.get('code')
   if (!code) {
     return new NextResponse("Code not provided", { status: 400 })
@@ -12,7 +15,7 @@ export async function GET(req: NextRequest) {
       {
         method: 'POST',
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        body: new URLSearchParams({code, client_id: process.env.SLACK_CLIENT_ID!, client_secret: process.env.SLACK_CLIENT_SECRET!, redirect_uri: `${process.env.NEXT_PUBLIC_URL}${process.env.SLACK_REDIRECT_URI}`})
+        body: new URLSearchParams({code, client_id: process.env.SLACK_CLIENT_ID!, client_secret: process.env.SLACK_CLIENT_SECRET!, redirect_uri: `${baseUrl}${process.env.SLACK_REDIRECT_URI}`})
       }
     )
 
@@ -29,7 +32,7 @@ export async function GET(req: NextRequest) {
       const teamName = data?.team?.name
 
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_URL}/connections?app_id=${appId}&authed_user_id=${userId}&authed_user_token=${userToken}&slack_access_token=${accessToken}&bot_user_id=${botUserId}&team_id=${teamId}&team_name=${teamName}`
+        `${baseUrl}/connections?app_id=${appId}&authed_user_id=${userId}&authed_user_token=${userToken}&slack_access_token=${accessToken}&bot_user_id=${botUserId}&team_id=${teamId}&team_name=${teamName}`
       )
     }
   
