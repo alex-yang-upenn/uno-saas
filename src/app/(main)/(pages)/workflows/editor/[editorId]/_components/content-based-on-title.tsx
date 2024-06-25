@@ -26,14 +26,12 @@ const ContentBasedOnTitle = ({ nodeConnection, newState, file, setFile, selected
   const title = selectedNode.data.title
   // @ts-ignore
   const nodeConnectionType: any = nodeConnection[nodeMapper[title]]
-  if (!nodeConnectionType) return <p>Not connected</p>
 
   const isConnected = (
-    title === 'Google Drive' ? 
-    !nodeConnection.isLoading :
-    nodeConnectionType[`${title === 'Slack' ? 'slackAccessToken' : title === 'Discord' ? 'webhookURL' : title === 'Notion' ? 'accessToken' : ''}`]
+    title === "Google Drive" 
+    ? !nodeConnection.isLoading
+    : nodeConnectionType[`${title === 'Slack' ? 'slackAccessToken' : title === 'Discord' ? 'webhookURL' : title === 'Notion' ? 'accessToken' : ''}`]
   )
-  if (!isConnected) return <p>Not connected</p>
   
   useEffect(() => {
     const reqGoogle = async () => {
@@ -47,6 +45,8 @@ const ContentBasedOnTitle = ({ nodeConnection, newState, file, setFile, selected
     }
     reqGoogle()
   }, [])
+
+  if (!isConnected || !nodeConnectionType) return <p>Not connected</p>
 
   return (
     <AccordionContent>
