@@ -22,17 +22,6 @@ type Props = {
 }
 
 const ContentBasedOnTitle = ({ nodeConnection, newState, file, setFile, selectedSlackChannels, setSelectedSlackChannels }: Props) => {
-  const { selectedNode } = newState.editor
-  const title = selectedNode.data.title
-  // @ts-ignore
-  const nodeConnectionType: any = nodeConnection[nodeMapper[title]]
-
-  const isConnected = (
-    title === "Google Drive" 
-    ? !nodeConnection.isLoading
-    : nodeConnectionType[`${title === 'Slack' ? 'slackAccessToken' : title === 'Discord' ? 'webhookURL' : title === 'Notion' ? 'accessToken' : ''}`]
-  )
-  
   useEffect(() => {
     const reqGoogle = async () => {
       const response: { data: { message: { files: any } } } = await axios.get('/api/drive')
@@ -45,8 +34,19 @@ const ContentBasedOnTitle = ({ nodeConnection, newState, file, setFile, selected
     }
     reqGoogle()
   }, [])
+  
+  const { selectedNode } = newState.editor
+  const title = selectedNode.data.title
+  // @ts-ignore
+  const nodeConnectionType: any = nodeConnection[nodeMapper[title]]
+  if (!nodeConnectionType) return <p>Not connected</p> 
 
-  if (!isConnected || !nodeConnectionType) return <p>Not connected</p>
+  const isConnected = (
+    title === "Google Drive" 
+    ? !nodeConnection.isLoading
+    : nodeConnectionType[`${title === 'Slack' ? 'slackAccessToken' : title === 'Discord' ? 'webhookURL' : title === 'Notion' ? 'accessToken' : ''}`]
+  )
+  if (!isConnected) return <p>Not connected</p>
 
   return (
     <AccordionContent>
