@@ -25,22 +25,28 @@ const InfoBar = (props: Props) => {
   useEffect(() => {onGetPayment()}, [])
 
   return (
-    <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full dark:bg-black ">
-      <span className="flex items-center gap-2 font-bold">
-        <p className="text-sm font-light text-gray-300">Credits</p>
-        {tier == "Unlimited" ? (<span>Unlimited</span>) : (<span>{credits}/{tier == "Free" ? "10" : tier == "Pro" && "100"}</span>
+    <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full bg-white dark:bg-black">
+      <span className="flex items-center gap-2 font-bold text-gray-800 dark:text-gray-200">
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">Credits</p>
+        {tier == "Unlimited" ? (
+          <span>Unlimited</span>
+        ) : (
+          <span>{credits}/{tier == "Free" ? "10" : tier == "Pro" && "100"}</span>
         )}
       </span>
-      <span className="flex items-center rounded-full bg-muted px-4">
-        <Search />
-        <Input placeholder="Quick Search" className="border-none bg-transparent"/>
+      <span className="flex items-center rounded-full bg-gray-100 dark:bg-gray-800 px-4">
+        <Search className="text-gray-500 dark:text-gray-400" />
+        <Input 
+          placeholder="Quick Search" 
+          className="border-none bg-transparent text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400"
+        />
       </span>
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger>
-            <Headphones />
+            <Headphones className="text-gray-800 dark:text-gray-200" />
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <p>Contact Support</p>
           </TooltipContent>
         </Tooltip>
@@ -48,9 +54,9 @@ const InfoBar = (props: Props) => {
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger>
-            <Book />
+            <Book className="text-gray-800 dark:text-gray-200" />
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <p>Guide</p>
           </TooltipContent>
         </Tooltip>
