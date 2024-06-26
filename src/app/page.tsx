@@ -13,7 +13,7 @@ export default function Home() {
     <main className="flex items-center justify-center flex-col">
       <Navbar />
       <section className="h-screen w-full  bg-neutral-950 rounded-md  !overflow-visible relative flex flex-col items-center antialiased">
-        <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_35%,#223_100%)]"></div>
+        <div className="absolute inset-0 h-full w-full items-center px-5 py-24 [background:radial-gradient(100%_100%_at_50%_10%,#FFFFFF_0%,#FFE6E6_60%)] dark:[background:radial-gradient(100%_100%_at_50%_10%,#FF0000_0%,#13060A_80%)]"></div>
         <div className="flex flex-col mt-[-100px] md:mt-[-50px]">
           <ContainerScroll
             titleComponent={
@@ -22,24 +22,19 @@ export default function Home() {
                   size={'lg'}
                   className="p-8 mb-8 md:mb-0 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500"
                 >
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-500 to-neutral-600  md:text-center font-sans group-hover:bg-gradient-to-r group-hover:from-black goup-hover:to-black">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-500 to-neutral-600 md:text-center font-sans group-hover:bg-gradient-to-r group-hover:from-black goup-hover:to-black">
                     Start For Free Today
                   </span>
                 </Button>
-                <h1 className="text-5xl md:text-8xl  bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
-                  Centralize and Automate with UNO
+                <h1 className="text-5xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
+                  Automate with UNO
                 </h1>
               </div>
             }
           />
         </div>
         <div>
-          <InfiniteMovingCards
-            className="mt-[-18rem] md:mt-[-2rem]"
-            items={clients}
-            direction="right"
-            speed="slow"
-          />
+          <InfiniteMovingCards className="mt-[-18rem] md:mt-[-2rem]" items={clients} direction="right" speed="slow" />
         </div>
         <section>
           <HeroParallax products={products}></HeroParallax>
@@ -192,7 +187,6 @@ export default function Home() {
           <div className="mt-20"/>
         </section>
       </section>
-      
     </main>
   )
 }

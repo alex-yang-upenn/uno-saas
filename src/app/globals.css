@@ -22,26 +22,26 @@
 /* #D91E52 */
 @layer base {
   :root  { 
-    --background: 343 100% 95%;
-    --foreground: 343 5% 0%;
-    --card: 343 50% 90%;
-    --card-foreground: 343 5% 10%;
-    --popover: 343 100% 95%;
-    --popover-foreground: 343 100% 0%;
-    --primary: 343 75.7% 48.4%;
+    --background: 360 100% 95%;
+    --foreground: 360 5% 0%;
+    --card: 360 50% 90%;
+    --card-foreground: 360 5% 10%;
+    --popover: 360 100% 95%;
+    --popover-foreground: 360 100% 0%;
+    --primary: 360 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 343 30% 70%;
+    --secondary: 360 30% 70%;
     --secondary-foreground: 0 0% 0%;
-    --muted: 305 30% 85%;
-    --muted-foreground: 343 5% 35%;
-    --accent: 305 30% 80%;
-    --accent-foreground: 343 5% 10%;
+    --muted: 322 30% 85%;
+    --muted-foreground: 360 5% 35%;
+    --accent: 322 30% 80%;
+    --accent-foreground: 360 5% 10%;
     --destructive: 0 100% 30%;
-    --destructive-foreground: 343 5% 90%;
-    --border: 343 30% 50%;
-    --input: 343 30% 18%;
-    --ring: 343 75.7% 48.4%;
-    --radius: 1rem;
+    --destructive-foreground: 360 5% 90%;
+    --border: 360 30% 50%;
+    --input: 360 30% 18%;
+    --ring: 360 100% 50%;
+    --radius: 0.5rem;
   }
   .dark  {
     --background: 343 50% 5%;

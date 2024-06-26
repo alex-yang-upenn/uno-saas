@@ -25,7 +25,7 @@ const InfoBar = (props: Props) => {
   useEffect(() => {onGetPayment()}, [])
 
   return (
-    <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full bg-white dark:bg-black">
+    <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full dark:bg-black">
       <span className="flex items-center gap-2 font-bold text-gray-800 dark:text-gray-200">
         <p className="text-sm font-light text-gray-500 dark:text-gray-400">Credits</p>
         {tier == "Unlimited" ? (
