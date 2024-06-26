@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
               await onCreateNewPageInDatabase(
                 flow.notionDbId!,
                 flow.notionAccessToken!,
-                JSON.parse(flow.notionTemplate!)
+                flow.notionTemplate!
               )
               flowPath.splice(flowPath[current], 1)
             }
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
                 'https://api.cron-job.org/jobs',
                 {
                   job: {
-                    url: `${process.env.NGROK_URI}?flow_id=${flow.id}`,
+                    url: `${webhookUrl}?flow_id=${flow.id}`,
                     enabled: 'true',
                     schedule: {
                       timezone: 'Europe/Istanbul',
@@ -67,27 +67,17 @@ export async function POST(req: NextRequest) {
                       mdays: [-1],
                       minutes: ['*****'],
                       months: [-1],
-                      wdays: [-1],
-                    },
-                  },
+                      wdays: [-1]
+                    }
+                  }
                 },
                 {
-                  headers: {
-                    Authorization: `Bearer ${process.env.CRON_JOB_KEY!}`,
-                    'Content-Type': 'application/json',
-                  },
+                  headers: {Authorization: `Bearer ${process.env.CRON_JOB_KEY!}`, 'Content-Type': 'application/json'}
                 }
               )
               if (res) {
                 flowPath.splice(flowPath[current], 1)
-                const cronPath = await db.workflows.update({
-                  where: {
-                    id: flow.id,
-                  },
-                  data: {
-                    cronPath: JSON.stringify(flowPath),
-                  },
-                })
+                const cronPath = await db.workflows.update({where: {id: flow.id}, data: {cronPath: JSON.stringify(flowPath)}})
                 if (cronPath) break
               }
               break
@@ -102,12 +92,5 @@ export async function POST(req: NextRequest) {
       }
     }
   }
-  return Response.json(
-    {
-      message: 'success',
-    },
-    {
-      status: 200,
-    }
-  )
+  return Response.json({message: 'success'}, {status: 200})
 }
