@@ -2,11 +2,14 @@ import { postContentToWebHook } from '@/app/(main)/(pages)/connections/_actions/
 import { onCreateNewPageInDatabase } from '@/app/(main)/(pages)/connections/_actions/notion-connection'
 import { postMessageToSlack } from '@/app/(main)/(pages)/connections/_actions/slack-connection'
 import { db } from '@/lib/db'
+import { getWebhookUrl } from '@/lib/utils'
 import axios from 'axios'
 import { headers } from 'next/headers'
 import { NextRequest } from 'next/server'
 
 export async function POST(req: NextRequest) {
+  const webhookUrl = getWebhookUrl()
+  
   console.log('🔴 Changed')
   const headersList = headers()
   let channelResourceId

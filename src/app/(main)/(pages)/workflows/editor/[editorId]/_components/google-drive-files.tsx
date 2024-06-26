@@ -33,10 +33,14 @@ const GoogleDriveFiles = (props: Props) => {
       setListenerId(listener.googleResourceId)
       if (listener.googleResourceId !== null) {
         setIsListening(true) 
+      } else {
+        setIsListening(false)
       }
+    } else {
+      setIsListening(false)
     }
   }
-  useEffect(() => {onListener()}, [])
+  useEffect(() => {onListener()})
 
   return (
     <div className="flex flex-col gap-3 pt-3">

@@ -1,10 +1,13 @@
+import { getWebhookUrl } from '@/lib/utils'
+import { db } from '@/lib/db'
 import { auth, clerkClient } from '@clerk/nextjs/server'
 import { google } from 'googleapis'
 import { v4 as uuidv4 } from 'uuid'
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
 
 export async function GET() {
+  const webhookUrl = getWebhookUrl()
+
   const { userId } = auth()
   if (!userId) {
     return NextResponse.json({message: "User not found"})
@@ -33,7 +36,7 @@ export async function GET() {
     pageToken: startPageToken,
     supportsAllDrives: true,
     supportsTeamDrives: true,
-    requestBody: {id: channelId, type: 'web_hook', address: `${process.env.NGROK_URI}/api/drive-activity/notification`, kind: 'api#channel'}
+    requestBody: {id: channelId, type: 'web_hook', address: `${webhookUrl}/api/drive-activity/notification`, kind: 'api#channel'}
   })
 
   if (listener.status == 200) {
