@@ -6,7 +6,9 @@ import { onSlackConnect } from './_actions/slack-connection'
 import { getUserData } from './_actions/get-user'
 import { CONNECTIONS } from '@/lib/constant'
 import { currentUser } from '@clerk/nextjs/server'
-import React from 'react'
+import { getCookie, deleteCookie } from 'cookies-next';
+import { toast } from 'sonner'
+import React, { useEffect } from 'react'
 
 type Props = {searchParams?: {[key: string]: string | undefined}}
 
@@ -32,6 +34,14 @@ const Connections = async (props: Props) => {
   }
 
   const areServicesConnected = await onUserConnections()
+
+  useEffect(() => {
+    const message = getCookie('errorMessage');
+    if (message) {
+      deleteCookie('errorMessage');
+      toast.message(message)
+    }
+  }, []);
 
   return (
     <div className="relative flex flex-col gap-4">
