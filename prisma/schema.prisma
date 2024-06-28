@@ -63,8 +63,7 @@ model DiscordWebhook {
 }
 
 model Slack {
-  id String @id @default(uuid())
-
+  id               String @id @default(uuid())
   appId            String
   authedUserId     String
   authedUserToken  String @unique
@@ -92,7 +91,7 @@ model Notion {
 
 model Connections {
   id               String          @id @default(uuid())
-  type             String          @unique
+  type             String          
   DiscordWebhook   DiscordWebhook? @relation(fields: [discordWebhookId], references: [id])
   discordWebhookId String?
   Notion           Notion?         @relation(fields: [notionId], references: [id])
